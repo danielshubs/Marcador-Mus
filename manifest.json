@@ -1,7 +1,7 @@
 {
     "name": "Marcador Mus",
     "short_name": "Mus",
-    "start_url": "index.html",
+    "start_url": "/Marcador-Mus/index.html",
     "display": "standalone",
     "background_color": "#f4f4f9",
     "theme_color": "#222",
@@ -17,4 +17,5 @@
             "type": "image/png"
         }
     ]
+
 }
