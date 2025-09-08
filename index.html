@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcador Mus</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcador Mus</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#222"/>
 </head>
-
 <body>
-    <h1>Marcador Mus</h1>
+  <h1>Marcador Mus</h1>
 
-    <div class="team">
-        <h2>Equipo A: <span id="scoreA">0</span></h2>
-        <button onclick="sumar('A')">+1</button>
-        <button onclick="restar('A')">-1</button>
-    </div>
+  <div class="team" id="teamA">
+    <h2>Equipo A</h2>
+    <div class="score" id="scoreA">0</div>
+  </div>
 
-    <div class="team">
-        <h2>Equipo B: <span id="scoreB">0</span></h2>
-        <button onclick="sumar('B')">+1</button>
-        <button onclick="restar('B')">-1</button>
-    </div>
+  <div class="team" id="teamB">
+    <h2>Equipo B</h2>
+    <div class="score" id="scoreB">0</div>
+  </div>
 
-    <button class="reset" onclick="reset()">Reset</button>
+  <button class="reset" onclick="reset()">Reset</button>
 
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
-
 </html>
