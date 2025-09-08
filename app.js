@@ -1,11 +1,18 @@
 let scoreA = 0;
 let scoreB = 0;
-let startY = null; // para detectar el gesto de deslizar
+let startY = null;
+let nameA = "Equipo A";
+let nameB = "Equipo B";
 
 function update() {
   document.getElementById("scoreA").textContent = scoreA;
   document.getElementById("scoreB").textContent = scoreB;
-  localStorage.setItem("marcador", JSON.stringify({ scoreA, scoreB }));
+  document.getElementById("nameA").textContent = nameA;
+  document.getElementById("nameB").textContent = nameB;
+
+  localStorage.setItem("marcador", JSON.stringify({
+    scoreA, scoreB, nameA, nameB
+  }));
 }
 
 function reset() {
@@ -14,27 +21,23 @@ function reset() {
   update();
 }
 
-// === Eventos para cada rectángulo ===
 function addListeners(teamId) {
   const el = document.getElementById(teamId);
 
-  // Click/tap → sumar
   el.addEventListener("click", () => {
     if (teamId === "teamA") scoreA++;
     else scoreB++;
     update();
   });
 
-  // Touch start → guardar Y inicial
   el.addEventListener("touchstart", e => {
     startY = e.touches[0].clientY;
   });
 
-  // Touch end → comprobar si hubo swipe hacia abajo
   el.addEventListener("touchend", e => {
     if (startY !== null) {
       const endY = e.changedTouches[0].clientY;
-      if (endY - startY > 50) { // deslizó hacia abajo
+      if (endY - startY > 50) {
         if (teamId === "teamA" && scoreA > 0) scoreA--;
         else if (teamId === "teamB" && scoreB > 0) scoreB--;
         update();
@@ -45,21 +48,30 @@ function addListeners(teamId) {
 }
 
 window.onload = () => {
-  // recuperar estado guardado
   const saved = JSON.parse(localStorage.getItem("marcador"));
   if (saved) {
     scoreA = saved.scoreA;
     scoreB = saved.scoreB;
+    nameA = saved.nameA || nameA;
+    nameB = saved.nameB || nameB;
   }
   update();
 
-  // activar interacción en cada equipo
   addListeners("teamA");
   addListeners("teamB");
 
-  // registrar service worker
+  // Guardar cambios de nombre en tiempo real
+  document.getElementById("nameA").addEventListener("input", e => {
+    nameA = e.target.textContent.trim() || "Equipo A";
+    update();
+  });
+
+  document.getElementById("nameB").addEventListener("input", e => {
+    nameB = e.target.textContent.trim() || "Equipo B";
+    update();
+  });
+
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
   }
 };
-
