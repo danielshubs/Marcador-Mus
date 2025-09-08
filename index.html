@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcador Mus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <h1>Marcador Mus</h1>
+
+    <div class="team">
+        <h2>Equipo A: <span id="scoreA">0</span></h2>
+        <button onclick="sumar('A')">+1</button>
+        <button onclick="restar('A')">-1</button>
+    </div>
+
+    <div class="team">
+        <h2>Equipo B: <span id="scoreB">0</span></h2>
+        <button onclick="sumar('B')">+1</button>
+        <button onclick="restar('B')">-1</button>
+    </div>
+
+    <button class="reset" onclick="reset()">Reset</button>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
